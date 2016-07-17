@@ -1,0 +1,24 @@
+
+
+# Introduction to ggplot2
+
+<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
+
+* to fill in later
+
+<!--endsec-->
+
+<br>
+
+---
+
+**Table of Contents**
+
+<!-- toc -->
+
+<br>
+
+---
+
+## Introduction
+
