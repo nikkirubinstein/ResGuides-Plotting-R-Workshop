@@ -1,0 +1,23 @@
+---
+title: "Introduction to programming concepts"
+author: "Nikki Rubinstein"
+date: "Saturday 25th June, 2016"
+output: html_document
+---
+
+
+### Table for helpers
+|Concept      | Examples|
+------------  | -----------------------------|
+|Coding       | Learning a foreign language|
+|             | Talking to your dog |
+|Variables    | Naming a baby or abstract object|
+|Vectors      | Forming a queue |
+|Matrices     | Grids |
+|Lists        | Collections of assorted items |
+|Dictionaries | IMDB movie scores |
+|Conditionals | Should I eat the tim tam? |
+|Loops        | Dancing |
+|Functions    | Walking  |
+|             | Baking   |
+|             | Glossaries |

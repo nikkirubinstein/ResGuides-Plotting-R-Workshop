@@ -1,0 +1,256 @@
+---
+title: "Introduction to Programming Concepts"
+author: "Nikki Rubinstein"
+date: "Saturday, June 25, 2016"
+output: ioslides_presentation
+runtime: shiny
+--- 
+
+```{r, include=FALSE}
+library(shiny)
+library(jpeg, lib.loc = "lib")
+library(png, lib.loc = "lib")
+library(grid)
+```
+
+## Telling your computer what to do
+<!-- concept of programming languages -->
+<!-- play simon says -->
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//Olate_dogs_-_on_wheel.jpeg")
+grid.raster(img) 
+``` 
+
+<!-- image source: https://upload.wikimedia.org/wikipedia/commons/d/d8/Olate_dogs_-_on_wheel.jpeg -->
+
+## Telling your computer what to do
+
+Some programming languages you might have heard of:  
+
+* R
+* Matlab
+* Python
+* JavaScript
+* html
+
+## Interacting with your computer
+<!-- introduce the idea of variables, assignment and memory storage
+at this point people should name their teams / tables -->
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readPNG("fig//Abstract_art_(PSF).png")
+grid.raster(img) 
+``` 
+<!-- image source: https://upload.wikimedia.org/wikipedia/commons/6/66/Abstract_art_(PSF).png -->
+
+## Interacting with your computer
+
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//pexels-photo.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: https://static.pexels.com/photos/15393/pexels-photo.jpg -->
+
+## Interacting with your computer
+Creating variables
+
+```{r}
+baby <- 'Meredith'
+sculpture <- 10
+```
+```{r}
+baby 
+sculpture
+```
+
+## What types of information does your computer understand?
+<!-- These are the building blocks of our conversation with the computer, much like words are the building blocks of a book -->
+* **numeric** 
+    + integers, e.g. `1, 2, 3`
+    + doubles, e.g. `1.25, 3.78`
+    + complex numbers, e.g. `3 + 2i`
+* **character or string** 
+    + e.g. `"Research", "Platforms"`
+* **logical or Boolean** 
+    + e.g. `TRUE` and `FALSE`
+
+## How can we group information?
+
+
+
+<!-- much like how we create sentences from words -->
+* vectors / tuples
+* matrices / data.frames / arrays
+* lists / structures
+* dictionaries
+
+## vectors / tuples
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//lechner-50119_960_720.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: https://pixabay.com/static/uploads/photo/2012/06/16/20/52/lechner-50119_960_720.jpg -->
+
+## vectors / tuples 
+```{r}
+vector1 <- 1:10
+vector2 <- c("learning", "to", "code", "is", "fun")
+```
+```{r}
+vector1
+vector2
+```
+
+## matrices / data.frames / arrays
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//House_of_Air_The_Matrix.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: https://upload.wikimedia.org/wikipedia/commons/f/fa/House_of_Air_The_Matrix.jpg -->
+
+## matrices / data.frames / arrays
+```{r}
+PlatoonLeads <- data.frame(
+    platoon = c("Data Wranglers", 
+                "Data Miners", 
+                "Data Vizards", 
+                "Cadventurers"),
+    name    = c("Kerry Halupka", 
+                "Kim Doyle", 
+                "Isabell Kiral-Kornek", 
+                "Louise van der Werff"))
+```
+```{r}
+PlatoonLeads
+```
+## lists / structures
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//musical instrument collection.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: http://s0.geograph.org.uk/geophotos/03/54/79/3547925_df1f2e83.jpg -->
+
+## lists / structures
+```{r}
+shoppingList <- list(
+  breakfast = c("cereal", "milk", "orange juice", "banana"),
+  lunch     = c("bread", "cheese", "tomato"),
+  dinner    = c("frozen pizza", "chocolate mousse")
+  )
+```
+```{r}
+shoppingList
+```
+## dictionaries
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//dictionary.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: https://pixabay.com/static/uploads/photo/2015/12/23/22/16/collaboration-1106196_960_720.jpg -->
+
+## dictionaries
+```{python}
+IMDBRatings = {"Game of Thrones": 9.4, 
+    "Sherlock": 9.2, 
+    "Firefly": 9.1, 
+    "Friends": 8.9}
+
+for movie, rating in IMDBRatings.items():
+    print movie + ': ' + str(rating)
+```
+## How to add flexibility to the conversation
+**If statements**
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//Am I hungry.jpg")
+grid.raster(img) 
+``` 
+
+## How to add flexibility to the conversation
+**If statements**
+```{r,echo=F}
+selectInput("hungry", "Am I hungry?", choices = c(TRUE, FALSE))
+```
+```{r,eval=F}
+if (hungry){
+  print("GIVE ME A TIM TAM!!!")
+} else {
+  print("No tim tam for me, thanks!")
+}
+```
+```{r,echo=F}
+renderText({if (input$hungry){
+  print("GIVE ME A TIM TAM!!!")
+} else {
+  print("No tim tam for me, thanks!")
+}})
+```
+
+## How to add flexibility to the conversation
+**For loops**
+```{r fig.width=3, fig.height=4,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//Man_and_woman_dancing_a_waltz.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: https://upload.wikimedia.org/wikipedia/commons/4/49/Man_and_woman_dancing_a_waltz_(rbm-QP301M8-1887-197a~6).jpg -->
+
+## How to add flexibility to the conversation
+**For loops**
+```{r}
+for (beats in 1:4){
+  print("bring left foot to right foot")
+  print("step left foot back to original position")
+  print("bring right foot to left foot")
+  print("step left foot back to original position")
+}
+```
+## How to add flexibility to the conversation
+**Functions**
+```{r fig.width=5, fig.height=5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//cooking.jpg")
+grid.raster(img) 
+``` 
+<!-- image source: https://pixabay.com/static/uploads/photo/2015/10/30/05/48/cooking-1013455_960_720.jpg -->
+
+## How to add flexibility to the conversation
+**Functions**
+```{r, echo=F}
+selectInput("day", "Day of the week", choices = c("Monday", "Tuesday", 
+                                                  "Wednesday", "Thursday",
+                                                  "Friday", "Saturday",
+                                                  "Sunday"))
+```
+```{r}
+moodCalendar <- function(day){
+  if (day %in% c("Friday", "Saturday", "Sunday")){
+    print(paste(day, "is a happy day"))
+  } else if (day %in% c("Monday", "Tuesday")){
+    print(paste(day, "is a grumpy day"))
+  } else {
+    print(paste(day, "is a neutral day"))
+  }}
+```
+```{r, echo=F}
+renderText({moodCalendar(input$day)})
+```
+
+## Where to find help
+```{r fig.width=5, fig.height=2,echo=FALSE, fig.align='center'}
+img <- readPNG("fig//stackoverflow.png")
+grid.raster(img) 
+```
+```{r fig.width=5, fig.height=2, echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//google.jpg")
+grid.raster(img) 
+``` 
+
+## Making mistakes is the best way to learn
+```{r fig.width=7.5, fig.height=4.5,echo=FALSE, fig.align='center'}
+img <- readJPEG("fig//it's ok to make mistakes.jpg")
+grid.raster(img) 
+``` 
+
+## Where to learn more
+
+* Sign up for one of our training courses: [http://melbourne.resbaz.edu.au/participate](http://melbourne.resbaz.edu.au/participate)
+* [http://www.w3schools.com/](http://www.w3schools.com/)
+* [MIT Open Courseware](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/)
+* [Coursera Data Science Specialisation](https://www.coursera.org/specializations/jhu-data-science)
