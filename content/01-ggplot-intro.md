@@ -36,6 +36,11 @@ There are three main plotting systems in R:
 
 Today we'll be learning about the ggplot2 package, because it is the most effective for creating publication quality graphics.
 
+<br>
+
+---
+
+
 ## Installation
 
 Make sure that you have the most recent version of R to get the most recent version of ggplot.
@@ -46,6 +51,11 @@ install.packages("ggplot2")
 library(ggplot2)
 ~~~
 
+<br>
+
+---
+
+
 ## The grammar of graphics
 
 ggplot2 is built on the grammar of graphics, the idea that any plot can be expressed from the same set of components: a data set, a coordinate system, a mapping from from data to aesthetic attributes (such as size, colour and shape) and a set of geoms--the visual representation of data points (such as points, lines and bars).
@@ -54,9 +64,14 @@ The key to understanding ggplot2 is thinking about a figure in layers: just like
 
 <!--sec data-title="Tip: Printing plots" data-id="tip2" data-show=true data-collapse=true ces-->
 
-When using R in interactive mode (running lines of code as opposed to sourcing a file), a call to ggplot will result in a plot being drawn. However, when sourcing a code file, ggplot figures will not be plotted unless there is a call to print. Make sure to assign your plot to a variable and then print that variable if you want your plot to appear! 
+When using R in interactive mode (running lines of code as opposed to sourcing a file), a call to ggplot will result in a plot being drawn. However, when sourcing a code file, ggplot figures will not be plotted unless there is a call to print. Make sure to assign your figure to a variable and then print that variable if you want your plot to appear! 
 
 <!--endsec-->
+
+<br>
+
+---
+
 
 ## The `msleep` dataset
 
@@ -73,6 +88,11 @@ Let's explore these layers using the `msleep` dataset that comes with the `ggplo
 * `brainwt` - brain weight in kilograms
 * `bodywt` - body weight in kilograms
 
+<br>
+
+---
+
+
 ## The ggplot layer
 
 The creation of a ggplot graphic begins with a call to the `ggplot` function. This function lets R know that we're creating a new plot, and specifies the global options for the plot: they apply to all layers on the plot.
@@ -82,14 +102,14 @@ The creation of a ggplot graphic begins with a call to the `ggplot` function. Th
 ggplot(data = msleep)
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 So far, we have told `ggplot` which dataset to use for the plot. Since we have given no additional information, `ggplot` has created the plotting area and nothing else.
+
+<br>
+
+---
+
 
 ## The aesthetic function
 
@@ -97,9 +117,9 @@ The aesthetic function - `aes` - is called within the `ggplot` and `geom` layers
 
 <!--sec data-title="Tip: Using the aesthetic function" data-id="tip1" data-show=true data-collapse=true ces-->
 
-If you're unsure whether something belongs in the `aes` function, ask yourself whether it include a column name from the dataset. If it includes a column name, then it belongs in the `aes` function.
+If you're unsure whether something belongs in the `aes` function, ask yourself whether it includes a column name from the dataset. If it includes a column name, then it belongs in the `aes` function.
 
-For example, if you want to colour everything red, the command to colour does not need to appear in the `aes` function. However, if you want to colour by the `vore` column of the dataset - so that omnivores, carnivores and herbivores are each coloured by separate colours - the colour command should appear in the `aes` function.
+For example, if you want to colour everything red, the command to colour does not need to appear in the `aes` function. However, if you want to colour by the `vore` column of the dataset - so that omnivores, carnivores, insectivores and herbivores are each coloured by separate colours - the colour command should appear in the `aes` function.
 
 <!--endsec-->
 
@@ -111,14 +131,14 @@ ggplot(data = msleep,
        aes(x = bodywt, y = brainwt, colour = sleep_total))
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 `ggplot` now knows which scales to use for the x- and y-axes. But we still haven't told `ggplot` what to plot. For this we need the `geom` layers.
+
+<br>
+
+---
+
 
 ## The geom layer
 
@@ -144,18 +164,14 @@ ggplot(data = na.omit(msleep),
   geom_point()
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 Here we have created a scatter plot of brain weight against body weight, coloured by the total number of hours sleep per night. 
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
 Modify the above code to display triangular symbols in the scatterplot, instead of circles.
+
 **HINT:** Use the shape argument in the `geom_point` layer, which takes an integer value. Circles are created using shape = 1. 
 
 <!--endsec-->
@@ -168,42 +184,19 @@ Layers can be added after assigning a variable name. This makes it easy to build
 ~~~sourcecode
 p <- ggplot(data = na.omit(msleep), 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) 
-~~~
-
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
-
-
-
-~~~sourcecode
 p <- p + geom_point()
-~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): object 'p' not found
-
-~~~
-
-
-
-~~~sourcecode
 print(p)
 ~~~
 
-
-
-~~~err
-Error in print(p): object 'p' not found
-
-~~~
+<img src="images/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 <!--endsec-->
+
+<br>
+
+---
+
 
 ## Faceting
 
@@ -221,12 +214,7 @@ ggplot(data = na.omit(msleep),
   facet_grid(~ vore)
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 Now let's create separate panels for each of the different eating habits and for each of the different conservation statuses.
 
@@ -238,18 +226,18 @@ ggplot(data = na.omit(msleep),
   facet_grid(conservation ~ vore)
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
-Modify the above code to use `facet_wrap` instead of `facet_wrap`. How did the plot change? In your opinion, which layer gave a better visualisation of the current data?
+Modify the above code to use `facet_wrap` instead of `facet_grid`. How did the plot change? In your opinion, which layer gave a better visualisation of the current data?
 
 <!--endsec-->
+
+
+<br>
+
+---
 
 
 ## Challenge solutions
@@ -263,12 +251,7 @@ ggplot(data = na.omit(msleep),
   geom_point(shape = 2)
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
@@ -282,11 +265,6 @@ ggplot(data = na.omit(msleep),
   facet_wrap(conservation ~ vore)
 ~~~
 
-
-
-~~~err
-Error in eval(expr, envir, enclos): could not find function "ggplot"
-
-~~~
+<img src="images/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 <!--endsec-->
