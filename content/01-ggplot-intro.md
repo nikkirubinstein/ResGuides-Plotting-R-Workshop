@@ -204,7 +204,7 @@ Faceting is an additional layer that can be used to display different segments o
 
 Faceting layers take a formula as their argument. Formulas are defined using the `~` symbol. When using the `facet_grid` layer, the variables on the left hand side of the `~` specify the rows and the variables on the right hand side of the `~` specify the columns. Multiple variables can be added to either side of the `~` by comibing them with the `+` symbol.
 
-Let's modify the previous code to add a faceting layer, so that we have separate panels for each of the different eating habits.
+Let's modify the previous code to add a faceting layer, so that we have separate panels for each of the different eating habits. Use the `na.omit` function to get rid of empty cells before faceting.
 
 
 ~~~sourcecode
