@@ -43,8 +43,6 @@ ggplot(data = na.omit(msleep),
   geom_point()
 ~~~
 
-<img src="images/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
-
 Modify the above code to display triangular symbols in the scatterplot, instead of circles.
 
 **HINT:** Use the shape argument in the `geom_point` layer, which takes an integer value. Circles are created using shape = 1. 
@@ -113,4 +111,4 @@ ggplot(data = na.omit(msleep),
 
 <img src="images/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
-<--endsec-->
+<!--endsec-->
