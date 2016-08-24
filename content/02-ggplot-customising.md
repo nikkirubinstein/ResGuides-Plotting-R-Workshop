@@ -2,7 +2,7 @@
 
 
 # Customising ggplot figures
-
+ 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
 
 * to fill in later
@@ -109,6 +109,6 @@ ggplot(data = na.omit(msleep),
   geom_point(shape = 2)
 ~~~
 
-<img src="images/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="images/custom-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 <!--endsec-->

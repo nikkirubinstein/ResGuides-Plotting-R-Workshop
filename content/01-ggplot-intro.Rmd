@@ -1,5 +1,6 @@
 ```{r include = FALSE}
 source("../tools/chunk-options.R")
+knitr_fig_path("intro-")
 library(ggplot2)
 ```
 
@@ -176,7 +177,7 @@ The `geom` layer tells `ggplot` what type of plot to create. Some possible `geom
 ggplot(data = na.omit(msleep), 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
   geom_point()
-```
+``` 
 
 Here we have created a scatter plot of brain weight against body weight, coloured by the total number of hours sleep per night. 
 

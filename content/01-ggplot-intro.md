@@ -102,7 +102,7 @@ The creation of a ggplot graphic begins with a call to the `ggplot` function. Th
 ggplot(data = msleep)
 ~~~
 
-<img src="images/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 So far, we have told `ggplot` which dataset to use for the plot. Since we have given no additional information, `ggplot` has created the plotting area and nothing else.
 
@@ -137,7 +137,7 @@ ggplot(data = msleep,
        aes(x = bodywt, y = brainwt, colour = sleep_total))
 ~~~
 
-<img src="images/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 `ggplot` now knows which scales to use for the x- and y-axes. But we still haven't told `ggplot` what to plot. For this we need the `geom` layers.
 
@@ -183,7 +183,7 @@ ggplot(data = na.omit(msleep),
   geom_point()
 ~~~
 
-<img src="images/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 Here we have created a scatter plot of brain weight against body weight, coloured by the total number of hours sleep per night. 
 
@@ -206,7 +206,7 @@ p <- p + geom_point()
 print(p)
 ~~~
 
-<img src="images/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
@@ -231,7 +231,7 @@ ggplot(data = na.omit(msleep),
   facet_grid(~ vore)
 ~~~
 
-<img src="images/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 Now let's create separate panels for each of the different eating habits and for each of the different conservation statuses.
 
@@ -243,7 +243,7 @@ ggplot(data = na.omit(msleep),
   facet_grid(conservation ~ vore)
 ~~~
 
-<img src="images/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
@@ -268,7 +268,7 @@ ggplot(data = na.omit(msleep),
   geom_point()
 ~~~
 
-<img src="images/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
@@ -284,6 +284,6 @@ ggplot(data = na.omit(msleep),
   facet_wrap(conservation ~ vore)
 ~~~
 
-<img src="images/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="images/intro-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 <!--endsec-->

@@ -5,6 +5,21 @@
 # http://yihui.name/knitr/options#chunk_options
 
 library("knitr")
+
+fix_fig_path <- function(pth) file.path("..", pth)
+
+
+## We set the path for the figures globally below, so if we want to
+## customize it for individual episodes, we can append a prefix to the
+## global path. For instance, if we call knitr_fig_path("01-") in the
+## first episode of the lesson, it will generate the figures in
+## `fig/rmd-01-`
+knitr_fig_path <- function(prefix) {
+  new_path <- paste0(opts_chunk$get("fig.path"),
+                     prefix)
+  opts_chunk$set(fig.path = new_path)
+}
+
 opts_chunk$set(tidy = FALSE, results = "markup", comment = NA,
                fig.align = "center", fig.path = "images/")
 
