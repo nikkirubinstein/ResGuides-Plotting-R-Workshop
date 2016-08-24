@@ -112,7 +112,7 @@ So far, we have told `ggplot` which dataset to use for the plot. Since we have g
 
 ## The aesthetic function
 
-The aesthetic function - `aes` - is called within the `ggplot` and `geom` layers. The `aes` function allows mapping from the dataset to the aesthetic features of the plot. 
+The aesthetic function - `aes` - is called within the `ggplot` and `geom` layers. The `aes` function allows mapping from the dataset to the aesthetic features of the plot. When called from within the `ggplot` layer, the `aes` attributes are applied globally to all layers of the plot. Whereas, when called from within the `geom` layers, the `aes` attributes are only applied to the current layer.
 
 <!--sec data-title="Tip: Using the aesthetic function" data-id="tip1" data-show=true data-collapse=true ces-->
 
@@ -140,7 +140,7 @@ ggplot(data = msleep,
 
 <!--sec data-title="Tip: Colouring by categorical variables" data-id="tip5" data-show=true data-collapse=true ces-->
 
-Within the `aes` function, you can set the colour of the geometric components of your plot. If the column used to set the colour is a numeric vector, the default colouring will be a gradient along the blue spectrum. If, however, the column used to set the colour is a factor (or categorical), the resultant plot will have separate colours for each level of the factor. There are times when you may want to convert from a numerical vector to a factor for this specific purpose!
+Within the `aes` function, you can set the colour of the geometric components of your plot. If the column used to set the colour is a numeric vector, the default colouring will be a gradient along the blue spectrum. If, however, the column used to set the colour is a factor (AKA categorical), the resultant plot will have separate colours for each level of the factor. There are times when you may want to convert from a numerical vector to a factor for this specific purpose!
 
 <!--endsec-->
 
@@ -182,9 +182,7 @@ Here we have created a scatter plot of brain weight against body weight, coloure
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Modify the above code to display triangular symbols in the scatterplot, instead of circles.
-
-**HINT:** Use the shape argument in the `geom_point` layer, which takes an integer value. Circles are created using shape = 1. 
+Modify the above code so that the size of the symbols is dictated by the number of hours of REM sleep.
 
 <!--endsec-->
 
@@ -218,7 +216,7 @@ Let's modify the previous code to add a faceting layer, so that we have separate
 ```{r}
 ggplot(data = na.omit(msleep), 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
-  geom_point(shape = 3, na.rm = T) + 
+  geom_point() + 
   facet_grid(~ vore)
 ```
 
@@ -227,7 +225,7 @@ Now let's create separate panels for each of the different eating habits and for
 ```{r}
 ggplot(data = na.omit(msleep), 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
-  geom_point(shape = 3, na.rm = T) + 
+  geom_point() + 
   facet_grid(conservation ~ vore)
 ```
 
@@ -249,18 +247,20 @@ Modify the above code to use `facet_wrap` instead of `facet_grid`. How did the p
 
 ```{r}
 ggplot(data = na.omit(msleep), 
-       aes(x = bodywt, y = brainwt, colour = sleep_total)) +
-  geom_point(shape = 2)
+       aes(x = bodywt, y = brainwt, colour = sleep_total, size = sleep_rem)) +
+  geom_point()
 ```
 
 <!--endsec-->
 
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
 
+`facet_wrap` creates a vector of plots that is wrapped across multiple rows. `facet_grid` creates a grid of plots, with the column name on the right hand side of the `~` dictating the horizontal axis of the grid and the column name on the left hand side of the `~` dictating the vertical axis of the grid.
+
 ```{r}
 ggplot(data = na.omit(msleep), 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
-  geom_point(shape = 3, na.rm = T) + 
+  geom_point() + 
   facet_wrap(conservation ~ vore)
 ```
 
