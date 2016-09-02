@@ -35,22 +35,35 @@ So far you have learnt the basic structure of a plot, and how to map from the da
 
 ## Changing the features of the geometric layers
 
-If you want your symbols to all be coloured red
+At times you may want to change the aesthetic of all the elements in a geom_layer in the same way. For example, you may want all of your symbols to be coloured red. This is achieved by adding `col = 'red'` to the geom_point layer (not inside an `aes` function).
 
 ```{r}
-ggplot(data = na.omit(msleep), 
+ggplot(msleep, 
        aes(x = bodywt, y = brainwt)) +
   geom_point(colour = "red")
 ```
 
+Other things that you could change include:
+* symbol border widths 
+* symbol border colours
+* symbol size
+* symbol shape
+* line width
+* symbol / line transparency
+
+Here we have a particularly ugly example of these aesthetic changes. **Note** that these changes are **NOT** placed in the `aes` function.
 
 ```{r}
-ggplot(data = na.omit(msleep), 
+ggplot(data = msleep, 
        aes(x = bodywt, y = brainwt)) +
-  geom_point(colour = "red", fill="green", size=3,shape=21, stroke=4) + geom_line(colour="blue")
+  geom_point(colour = "red", fill="green", size=3, shape=21, stroke=4) + geom_line(colour="blue", size = 2, linetype = 2, alpha = 0.2)
 ```
-Needs to include changing symbol borders and colours, size, shape, 
-line width (fill vs colour)
+
+In the above example, we have added a `geom_line()` layer to the plot. Layers are drawn in the order that they are written, so the line `geom_line()` layer appears on top of the `geom_point()` layer. 
+
+The `shape` of the symbols in the `geom_point()` layer have been changed from the default value of 1 (solid circles) to 21 (open circles). The `fill` colour of the circles has been set to `green` and the border colour (`colour`) to `red`. The `size` of the points has been increased from 1 to 3 and the width of the border (`stroke`) to 4.
+
+The lines in the `geom_line()` layer are of `linetype` 2, which corresponds to dashed lines. These lines are coloured (`colour`) `blue`, with a transparency level of 0.2 (possible `alpha` values range from 0 to 1) and twice the thickness (`size`) of the default lines.
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
@@ -71,6 +84,16 @@ Modify the above code to display triangular symbols in the scatterplot, instead 
 ---
 
 ## Colour schemes
+
+The default colour scheme is not always the best option for your plot. In R, colours can be defined by: name, RGB value or hexadecimal. You can choose to change your colour scheme manually or through an already created colour palette.
+
+To manually alter your colour scheme, you can use the functions:
+* `scale_colour_manual` - change the colour defined by categorical variables
+* `scale_fill_manual` - change the fill colour defined by categorical variables
+* `scale_colour_gradient` - change the colour defined by numeric variables
+* `scale_fill_gradient` - change the fill colour defined by numeric variables
+
+
 
 How to change the colour scheme
 scale_colour_manual and scale_fill_manual and scale_colour_gradientn to change colours manually

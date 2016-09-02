@@ -178,9 +178,16 @@ The `geom` layer tells `ggplot` what type of plot to create. Some possible `geom
 
 
 ~~~sourcecode
-ggplot(data = na.omit(msleep), 
+ggplot(data = msleep, 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
   geom_point()
+~~~
+
+
+
+~~~err
+Warning: Removed 27 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/intro-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
@@ -199,11 +206,18 @@ Layers can be added after assigning a variable name. This makes it easy to build
 
 
 ~~~sourcecode
-p <- ggplot(data = na.omit(msleep), 
+p <- ggplot(data = msleep, 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) 
 p <- p + geom_point()
 
 print(p)
+~~~
+
+
+
+~~~err
+Warning: Removed 27 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/intro-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
@@ -221,7 +235,7 @@ Faceting is an additional layer that can be used to display different segments o
 
 Faceting layers take a formula as their argument. Formulas are defined using the `~` symbol. When using the `facet_grid` layer, the variables on the left hand side of the `~` specify the rows and the variables on the right hand side of the `~` specify the columns. Multiple variables can be added to either side of the `~` by comibing them with the `+` symbol.
 
-Let's modify the previous code to add a faceting layer, so that we have separate panels for each of the different eating habits. Use the `na.omit` function to get rid of empty cells before faceting.
+Let's modify the previous code to add a faceting layer, so that we have separate panels for each of the different eating habits. 
 
 
 ~~~sourcecode
@@ -233,17 +247,43 @@ ggplot(data = na.omit(msleep),
 
 <img src="images/intro-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
+You may have noticed that NA facets were added to the plot. When missing values are present in the column used to facet, but valid x and y values are present, these x and y values are plotted in a panel marked `NA`. If you only want data plotted for valid entries, use the `is.na()` to check that values are present. 
+
+
+~~~sourcecode
+ggplot(data = msleep[!is.na(msleep$vore),], 
+       aes(x = bodywt, y = brainwt, colour = sleep_total)) +
+    geom_point() + 
+    facet_grid(~ vore)
+~~~
+
+
+
+~~~err
+Warning: Removed 25 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/intro-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+
 Now let's create separate panels for each of the different eating habits and for each of the different conservation statuses.
 
 
 ~~~sourcecode
-ggplot(data = na.omit(msleep), 
+ggplot(data = msleep[!is.na(msleep$conservation) & !is.na(msleep$vore),], 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
   geom_point() + 
   facet_grid(conservation ~ vore)
 ~~~
 
-<img src="images/intro-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 18 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/intro-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
@@ -263,12 +303,19 @@ Modify the above code to use `facet_wrap` instead of `facet_grid`. How did the p
 
 
 ~~~sourcecode
-ggplot(data = na.omit(msleep), 
+ggplot(data = msleep, 
        aes(x = bodywt, y = brainwt, colour = sleep_total, size = sleep_rem)) +
   geom_point()
 ~~~
 
-<img src="images/intro-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 35 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/intro-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
@@ -278,12 +325,19 @@ ggplot(data = na.omit(msleep),
 
 
 ~~~sourcecode
-ggplot(data = na.omit(msleep), 
+ggplot(data = msleep[!is.na(msleep$conservation) & !is.na(msleep$vore),], 
        aes(x = bodywt, y = brainwt, colour = sleep_total)) +
   geom_point() + 
   facet_wrap(conservation ~ vore)
 ~~~
 
-<img src="images/intro-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 18 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/intro-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 <!--endsec-->
